@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Notes App</title>
+</head>
+
+<body>
+  <!-- Left Sidebar: File Explorer -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span>Explorer</span>
+      <div class="add-folder-btn" title="New Folder">
+        <svg style="width:18px;height:18px;fill:#94a3b8;" viewBox="0 0 24 24">
+          <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="sidebar-content">
+      <ul class="file-tree" id="fileTree">
+
+        <!-- Folder 1: Expanded -->
+        <li class="folder expanded">
+          <div class="tree-item" onclick="toggleFolder(this.parentElement)">
+            <svg class="arrow" viewBox="0 0 24 24">
+              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+            </svg>
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,4H12L10,4Z" />
+            </svg>
+            <span>Personal</span>
+          </div>
+          <ul>
+            <li class="leaf">
+              <div class="tree-item active" onclick="selectNote(this)">
+                <svg class="arrow" viewBox="0 0 24 24"></svg>
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+                <span>Grocery List</span>
+              </div>
+            </li>
+            <li class="leaf">
+              <div class="tree-item" onclick="selectNote(this)">
+                <svg class="arrow" viewBox="0 0 24 24"></svg>
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+                <span>Journal Entry</span>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Folder 2 -->
+        <li class="folder">
+          <div class="tree-item" onclick="toggleFolder(this.parentElement)">
+            <svg class="arrow" viewBox="0 0 24 24">
+              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+            </svg>
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,4H12L10,4Z" />
+            </svg>
+            <span>Work Projects</span>
+          </div>
+          <ul>
+            <li class="folder">
+              <div class="tree-item" onclick="toggleFolder(this.parentElement)">
+                <svg class="arrow" viewBox="0 0 24 24">
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                </svg>
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path
+                    d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,4H12L10,4Z" />
+                </svg>
+                <span>Q4 Strategy</span>
+              </div>
+              <ul>
+                <li class="leaf">
+                  <div class="tree-item" onclick="selectNote(this)">
+                    <svg class="arrow" viewBox="0 0 24 24"></svg>
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                    </svg>
+                    <span>Meeting Notes</span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="leaf">
+              <div class="tree-item" onclick="selectNote(this)">
+                <svg class="arrow" viewBox="0 0 24 24"></svg>
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+                <span>Ideas</span>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Right: Editor Area -->
+  <main class="main-editor">
+    <div class="editor-toolbar">
+      <button class="toolbar-btn">Delete</button>
+      <button class="toolbar-btn">Export PDF</button>
+      <button class="toolbar-btn">Share</button>
+      <span class="last-edited">Saved</span>
+    </div>
+
+    <div class="editor-content-wrapper">
+      <div class="editor-container">
+        <input type="text" class="note-title-input" placeholder="Note Title" value="Grocery List">
+        <textarea class="note-body-textarea" placeholder="Start typing...">- Milk
+- Eggs
+- Bread
+- Apples
+- Coffee Beans (Dark Roast)</textarea>
+      </div>
+    </div>
+  </main>
+
+
+  <h1>Notes App</h1>
+  <section id="notes-list">
+    <h2>Your Notes</h2>
+    <ul id="notes-list">
+      <!-- Notes will be dynamically inserted here -->
+    </ul>
+  </section>
+  <section id="current-note">
+    <h2>Add a New Note</h2>
+    <form id="note-form">
+      <input type="text" id="note-title" placeholder="Note Title" required />
+      <br />
+      <textarea id="note-content" placeholder="Note Content" required></textarea>
+      <br />
+      <button type="button" id="add-note-button">Save Note</button>
+    </form>
+  </section>
+  <script type="module" src="/src/renderer.js"></script>
+</body>
+
+</html>
